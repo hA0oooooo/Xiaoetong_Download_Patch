@@ -1,0 +1,8 @@
+# Resolved and tested on Windows / Python 3.12, 2026-10-08.
+# Runtime dependency constraints; the application runs directly from src/.
+certifi==2026.7.22
+charset-normalizer==3.5.2
+idna==3.20
+imageio-ffmpeg==0.6.0
+requests==2.34.2
+urllib3==2.8.0
