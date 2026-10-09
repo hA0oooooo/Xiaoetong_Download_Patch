@@ -5,7 +5,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
 EXCLUDED = {".git", ".venv", "runtime", "downloads", "dist", "build", "__pycache__", ".pytest_cache"}
-ALLOWED_ROOTS = {"src", "tests", "scripts", ".github", ".gitignore", ".gitattributes", "README.md", "LICENSE", "requirements.txt", "requirements-lock.txt", "launch.cmd", "run-tests.cmd"}
+ALLOWED_ROOTS = {"src", "tests", "scripts", ".gitignore", ".gitattributes", "README.md", "LICENSE", "requirements.txt", "requirements-lock.txt", "launch.cmd", "run-tests.cmd"}
 
 
 def main():

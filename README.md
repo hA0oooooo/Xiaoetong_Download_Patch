@@ -103,27 +103,20 @@ $client = "D:\Apps\xiaoetong\xiaoe-tong-client"
 
 ## 3. 技术方案与目录
 
-补丁在小鹅通学员客户端中加载自行编写的桥接模块，通过当前窗口的 SDK 检查登录状态并调用正常课程、播放和文档接口。Python 视频下载器通过仅监听本机、带随机访问凭证的通道读取资源，再交给下载核心保存文件。原账号令牌留在小鹅通学员客户端内，账号标识从接口响应取得，不绑定某个使用者。
+补丁在小鹅通学员客户端中加载自行编写的桥接模块，通过当前窗口的 SDK 检查登录状态并调用正常课程、播放和文档接口；Python 视频下载器通过仅监听本机、带随机访问凭证的通道读取资源，再交给下载核心保存文件；原账号令牌留在小鹅通学员客户端内，账号标识从接口响应取得，不绑定某个使用者
 
 ```text
-src/xiaoetong_assistant/   界面、会话桥接、课程目录及下载核心
-scripts/                  依赖安装、补丁安装与恢复、命令行和源码打包
-tests/                    Python 与 Node 回归测试
-.github/workflows/        GitHub 上的 Windows 自动检查
-launch.cmd                启动视频下载器
-run-tests.cmd             执行开发测试
-requirements.txt          运行依赖清单
-requirements-lock.txt     安装时使用的依赖版本约束
-.venv/                    安装时生成的本机 Python 环境，不发布
-runtime/                  运行时生成的本机会话连接信息，不发布
-agent/                    本地开发技术记录与联调工具，不发布
-AGENTS.md                 agent 技术记录导航与工作规范，不发布
+src/xiaoetong_assistant/  核心逻辑
+scripts/                  命令入口
+tests/                    回归测试
+launch.cmd                视频下载器启动入口
+run-tests.cmd             开发测试入口
+requirements.txt          依赖清单
+requirements-lock.txt     依赖版本约束
+README.md                 使用说明
+LICENSE                   MIT 许可证
 ```
-
-`runtime/` 不是源码，也不是废目录：其中的 `native-bridge.json` 由小鹅通学员客户端会话桥接生成，视频下载器依靠它连接当前会话。运行期间不要删除；它包含本机访问凭证，已在 `.gitignore` 和源码打包规则中排除。`.venv/` 同样仅供本机运行使用，新电脑通过安装脚本重新创建。
-
-下载文件保存到用户选择的位置。Python 的 `__pycache__/` 是可重新生成的缓存，不属于公开源码；源码打包生成的 `dist/` 也不会提交。
 
 开发测试需要 Node.js 22+，运行 `run-tests.cmd` 即可，普通安装和使用不需要 Node.js
 
-自行编写的代码采用 MIT 许可证，见 [LICENSE](LICENSE)。
+自行编写的代码采用 MIT 许可证，见 [LICENSE](LICENSE)
